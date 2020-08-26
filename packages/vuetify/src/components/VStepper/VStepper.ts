@@ -112,12 +112,14 @@ export default baseMixins.extend({
       this.$nextTick(() => (this.internalValue = step))
     },
     updateView () {
-      for (let index = this.steps.length; --index >= 0;) {
-        this.steps[index].toggle(this.internalValue as any)
-      }
-      for (let index = this.content.length; --index >= 0;) {
-        this.content[index].toggle(this.internalValue as any, this.isReverse)
-      }
+      this.$nextTick(() => {
+        for (let index = this.steps.length; --index >= 0;) {
+          this.steps[index].toggle(this.internalValue as any)
+        }
+        for (let index = this.content.length; --index >= 0;) {
+          this.content[index].toggle(this.internalValue as any, this.isReverse)
+        }
+      })
     },
   },
 
